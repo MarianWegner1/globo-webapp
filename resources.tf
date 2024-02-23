@@ -30,7 +30,7 @@ resource "aws_instance" "main" {
   ami           = nonsensitive(data.aws_ssm_parameter.amzn2_linux.value)
   instance_type = var.instance_type
   subnet_id     = data.tfe_outputs.networking.data.tfe_outputs.networking.nonsensitive_values.publics_subnets[count.index]
-  vpc_security_group_ids = [‚
+  vpc_security_group_ids = [
     aws_security_group.webapp_http_inbound_sg.id,
     aws_security_group.webapp_ssh_inbound_sg.id,
     aws_security_group.webapp_outbound_sg.id,
